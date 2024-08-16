@@ -54,3 +54,5 @@ Berikut hal yang perlu diperhatikan:
 * Pastikan untuk membuat prompt yang mengandung seluruh informasi yang diperlukan. Ingat LLM tidak memahami kondisi lingkungan nyata dan pastikan prompt dapat menyediakan seluruh informasi yang diperlukan. Mungkin perlu dicoba beberapa kali sampai menghasilkan output yang sesuai. Jika menggunakan model lain (selain Gemma), jangan lupa membaca prompting / finetuning guide dari model tersebut.
 * Buat berbagai macam skenario input untuk meningkatkan performa model
 
+Untuk dataset lengkap dapat diakses di 🤗 (https://huggingface.co/datasets/Aryaduta/test-data2?row=1)
+
