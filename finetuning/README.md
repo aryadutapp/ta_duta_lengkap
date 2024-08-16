@@ -49,3 +49,7 @@ Instruksi Penggunaan:
 
 ```
 
+Berikut hal yang perlu diperhatikan:
+* Dalam implementasi dunian nyata, Objek dan Koordinat yang Tersedia akan diinject secara real time dengan object detection. Namun untuk keperluan finetuning, akan dibuat tetap. Jika ingin membuat objek yang berbeda dapat ditambahkan langsung. Pastikan untuk koordinat objek variatif (tidak integer semua atau bilangan positif semua), karena sepengalaman jika koordinat tidak variatif maka output LLM yang dihasilkan juga tidak sesuai (misalkan koordinat -210.32 akan menjadi 210 saat LLM menghasilkan action plan karena koordinat kurang variatif.
+* Pastikan untuk membuat prompt yang mengandung seluruh informasi yang diperlukan. Ingat LLM tidak memahami kondisi lingkungan nyata dan pastikan prompt dapat menyediakan seluruh informasi yang diperlukan. Mungkin perlu dicoba beberapa kali sampai menghasilkan output yang sesuai. Jika menggunakan model lain (selain Gemma), jangan lupa membaca prompting / finetuning guide dari model tersebut.
+
