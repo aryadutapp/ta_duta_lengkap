@@ -43,9 +43,9 @@ Instruksi Penggunaan:
 5. Untuk memindahkan objek secara lateral ((misalnya ke kiri, kanan, depan, belakang, atas, depan), pertama-tama gerakkan lengan robot ke koordinat objek menggunakan perintah "move_to", kemudian gunakan perintah "move" dengan arah yang sesuai.
 6. Jika tujuan pengguna tidak dapat tercapai dengan perintah dan objek saat ini, gunakan perintah "err_msg".",
 
-"input": "https://www.bbc.com/news/world-51461830",
+"input": "pindahkan posisi balok biru ke posisi kiri",
 
-"output": "The recent protests in Belarus are part of a growing wave of discontent against the rule of Alexander Lukashenko, who has led the country since 1994. Demonstrations against his government have been ongoing since August, and come in the wake of an election widely seen as rigged. As police and security forces have cracked down on protesters, the movement has only grown, with hundreds of thousands of people taking to the streets to call for new leadership. Human rights activists have accused the government of using extreme violence in order prosecute protesters, leading to an international outcry and sanctions from the European Union. As the situation in Belarus continues to unfold, the international community is monitoring the situation closely - hoping for a peaceful resolution, while also standing firm against the oppressive tactics employed by the Belarusian state."
+"output": "{"actions": [{"command": "move_to", "parameters": {"x": 152.76, "y": 158.92, "z": 6}}, {"command": "suction_cup", "parameters": {"action": "on"}}, {"command": "move", "parameters": {"direction": "kiri"}}, {"command": "suction_cup", "parameters": {"action": "off"}}]}"
 
 ```
 
