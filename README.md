@@ -1,10 +1,6 @@
 # INTERAKSI MANUSIA ROBOT BERBASIS LARGE LANGUAGE MODEL UNTUK PEMBANGKITAN ACTION PLAN PADA ROBOT LENGAN.
 
-## Tentang Proyek
-
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
 Repo ini akan membahas tugas akhir bagaimana kita dapat mengontrol robot lengan (Dobot Magician) dengan Input text bahasa alami yang diolah dengan LLM yang telah di finetune untuk menghasilkan Low Level JSON Action Plan yang akan dieksekusi robot secara real time
 
