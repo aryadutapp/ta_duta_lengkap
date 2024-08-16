@@ -13,16 +13,39 @@ Berikut keperluan alat dan metode:
 Sebelumnya kita harus menyiapkan dataset. Untuk format dataset saya menggunakan format [Alpaca](https://github.com/gururise/AlpacaDataCleaned). Format ini cocok karena terdiri dari instruction, input, dan output yang mengandung cukup informasi bagi LLM untuk membuat Action Plan. Untuk format instruction berisi mengenai instruksi agar LLM dapat membuat rencana aksi (misalkan fungsi yang dapat diakses, format yang diinginkan (JSON), dan batasan lingkugan (constrain). Input berisi perintah pengguna (misalkan geser lengan robot ke depan), dan Output berisi Action Plan yang diharapkan. Untuk Prompt Engineering masih menjadi topik hangat yang terus berkembang. Meskipun tidak ada satu metode one-size-fits-all dalam membuat prompt yang bagus, berikut rekomendasi untuk prompting LLM untuk robot [GPT for Robotics](https://www.microsoft.com/en-us/research/uploads/prod/2023/02/ChatGPT___Robotics.pdf) yang dapat dipertimbangkan . Untuk contoh dataset yang digunakan akan dicantumkan di bawah.
 
 ```
-"instruction":"Summarize the given article in 200 Words.",
+"instruction":
+
+"Objektif: Tugas anda adalah menghasilkan urutan respons JSON untuk merencanakan tindakan lengan robot berdasarkan input pengguna. Jika tujuan tidak dapat dicapai dengan menggunakan instruksi yang disediakan dan objek yang tersedia, kembalikan pesan kesalahan.
+
+Berikan objek JSON yang mengandung array "actions", diidentifikasi dengan key "actions".
+
+Setiap aksi harus direpresentasikan sebagai objek dengan "command" dan "parameters" yang sesuai
+
+Objek dan Koordinat yang Tersedia (x,y,z):
+1. Balok ungu = (-86.59, 117.21, -122.30)
+2. Balok kuning = (-168.94, -129.37, -68)
+3. Balok biru = (152.76, 158.92, 6)
+
+Perintah yang Tersedia:
+1. move: Gerakkan lengan robot ke arah tertentu. Sertakan parameter "direction" dengan nilai "atas", "bawah", "depan", "belakang", "kiri", atau "kanan".
+2. move_to: Gerakkan lengan robot ke koordinat tertentu. Sertakan parameter "x", "y", dan "z" untuk menentukan koordinat tujuan.
+3. suction_cup: Aktifkan atau nonaktifkan cup hisap. Gunakan parameter "action" dengan nilai "on" atau "off".
+5. err_msg: Kembalikan pesan kesalahan jika tujuan pengguna tidak dapat tercapai dengan menggunakan objek dan perintah saat ini. Gunakan parameter "msg" dengan nilai "tidak dapat membuat rencana aksi dengan kondisi terkini".
+
+Contoh Penggunaan Perintah:
+"{"actions":[{"command":"move","parameters":{"direction":"atas"}},{"command":"move_to","parameters":{"x":-30.21,"y":233.32,"z":-40}},{"command":"suction_cup","parameters":{"action":"on"}},{"command":"err_msg","parameters":{"msg":"tidak dapat membuat rencana aksi dengan kondisi terkini"}}]}"
+
+Instruksi Penggunaan:
+1. Untuk memindahkan objek yang tersedia ke koordinat tertentu, aktifkan penyedot terlebih dahulu menggunakan perintah "suction_cup" dengan "action" diatur ke "on", kemudian gerakkan ke koordinat objek menggunakan perintah "move_to".
+2. Berikan koordinat penempatan untuk tujuan pengguna menggunakan perintah "move_to".
+3. Untuk melepaskan objek setelah menggunakan penyedot, nonaktifkan penyedot terlebih dahulu menggunakan perintah "suction_cup" dengan "action" diatur ke "off".
+4. Untuk memindahkan robot secara lateral (misalnya ke kiri, kanan, depan, belakang, atas, depan), gunakan perintah "move" dengan arah yang sesuai.
+5. Untuk memindahkan objek secara lateral ((misalnya ke kiri, kanan, depan, belakang, atas, depan), pertama-tama gerakkan lengan robot ke koordinat objek menggunakan perintah "move_to", kemudian gunakan perintah "move" dengan arah yang sesuai.
+6. Jika tujuan pengguna tidak dapat tercapai dengan perintah dan objek saat ini, gunakan perintah "err_msg".",
+
 "input": "https://www.bbc.com/news/world-51461830",
+
 "output": "The recent protests in Belarus are part of a growing wave of discontent against the rule of Alexander Lukashenko, who has led the country since 1994. Demonstrations against his government have been ongoing since August, and come in the wake of an election widely seen as rigged. As police and security forces have cracked down on protesters, the movement has only grown, with hundreds of thousands of people taking to the streets to call for new leadership. Human rights activists have accused the government of using extreme violence in order prosecute protesters, leading to an international outcry and sanctions from the European Union. As the situation in Belarus continues to unfold, the international community is monitoring the situation closely - hoping for a peaceful resolution, while also standing firm against the oppressive tactics employed by the Belarusian state."
 
-"instruction": "Classify the following shape according to simple geometry.",
-"input": "<Picture Attached>",
-"output": "Triangle"
-
-"instruction": "Given a recent news article, write a headline for it.",
-"input": "https://www.news.example.com/article-1",
-"output": "\"NASA Launches a Mars 2020 Mission to Search for Signs of Ancient Life\""
 ```
 
