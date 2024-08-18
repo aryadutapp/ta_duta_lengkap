@@ -45,7 +45,7 @@ def detect_blocks(frame, min_size=100, max_size=5000):
 
 ## Membuat web untuk antarmuka robot
 
-Untuk website berfungsi sebagai tempat menginput teks input perintah bahasa alami dan menjalankan robot. Website di host dalam flask (python)
+Untuk website berfungsi sebagai tempat menginput teks input perintah bahasa alami dan menjalankan robot. Website di host dalam flask (app.py).
 
 ```
 # FOR WEBSITE INTERFACE USING FLASK
@@ -78,6 +78,10 @@ def send_prompt():
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
 ```
+
+Berikut contoh tampilan website
+
+INSERT IMAGE HERE
 
 
 
