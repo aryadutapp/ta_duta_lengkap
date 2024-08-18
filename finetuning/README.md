@@ -6,7 +6,7 @@ Finetuning adalah tindakan untuk menyesuaikan ulang base model LLM agar performa
 Berikut keperluan alat dan metode:
 * Model LLM yang digunakan adalah [Gemma 2B](https://huggingface.co/google/gemma-2b)
 * Metode finetuning yang digunakan adalah Low Rank Adaptation [LoRA](https://arxiv.org/abs/2106.09685)
-* Library untuk inferrence dan finetuning adalah unsloth [Unsloth](https://github.com/unslothai/unsloth)
+* Library untuk inferrence dan finetuning adalah [Unsloth](https://github.com/unslothai/unsloth)
 
 ## Dataset
 
