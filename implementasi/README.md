@@ -25,6 +25,7 @@ Untuk penjelasan selanjutnya asumsikan saya hanya membahas untuk kode app.py kec
 
 Semua kode ini nantinya akan di app.py di fungsi detect_blocks():
 
+Dalam kode ini hanya mendeteksi tepat satu balok biru, jingga, dan kuning.
 
 Untuk deteksi objek dilakukan dengan webcam dan diproses dengan OpenCV untuk klasifikasi berdasarkan warna. Jika ingin menggunakan metode lain, dapat dilakukan. 
 
