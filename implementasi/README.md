@@ -13,8 +13,9 @@ Setelah model LLM selesai di finetune, kita masih ada beberapa tugas sebelum bis
 
 - [x] Finetuning gemma-2B untuk LLM
 - [ ] Implementasi persepsi robot dengan webcam dan opencv (deteksi objek berdasarkan warna)
-- [ ] Membuat web untuk antarmuka robot dan API inferrence
+- [ ] Membuat web untuk antarmuka robot
 - [ ] Kalirasi robot dengan kamera dan lingkungan
+- [ ] Membuat API Inferrence LLM
 - [ ] Menghubungkan semuanya
 
 Note: Untuk kode inferrence LLM dan menjalankan robot dijalankan di dua komputer terpisah. Hal ini dikarenakan untuk inferrence LLM. Sederhananya Low Performance Computer (LPC) akan terhubung ke robot dan kamera dan juga hosting halaman web sederhana sebagai antarmuka kontrol untuk memasukkan text. Sedaangkan High Performance Computer (HPC) akan digunakan untuk inferrence LLM dan hosting API Inferrence agar LPC dapat membuat request inferrence ke HPC. Dalam implementasi nyata hanya terdapat dua file kode yang dijalankan (inferrence.ipypb dan app.py). Jika ingin dijalankan dalam satu komputer (1 HPC), bisa langsung menjalankan dua kode dalam satu komputer. 
@@ -32,7 +33,7 @@ Untuk deteksi objek dilakukan dengan webcam dan diproses dengan OpenCV untuk kla
 ```
 # Function to detect blocks
 # Input = Image frame
-# Output = frame of detected object (camera with bounding box ) and update detected_object global coordinate
+# Output = frame of detected object (camera with bounding box) and update detected_object global coordinate
 
 def detect_blocks(frame, min_size=100, max_size=5000):
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -41,6 +42,39 @@ def detect_blocks(frame, min_size=100, max_size=5000):
     detected_coordinates = detected_objects  # Update global coordinate
     return result_frame
 ```
+
+## Membuat web untuk antarmuka robot
+
+Untuk website berfungsi sebagai tempat menginput teks input perintah bahasa alami dan menjalankan robot. Website di host dalam flask (python)
+
+```
+# FOR WEBSITE INTERFACE USING FLASK
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/detected_objects')
+def get_detected_objects():
+    global detected_coordinates
+    return jsonify(detected_coordinates)
+
+# Endpoint to handle running the robot
+@app.route('/run-robot', methods=['POST'])
+def run_robot_endpoint():
+........
+
+@app.route('/send_prompt', methods=['POST'])
+def send_prompt():
+.........
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
+```
+
 
 
 
