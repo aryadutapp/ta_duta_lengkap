@@ -31,13 +31,15 @@ Untuk deteksi objek dilakukan dengan webcam dan diproses dengan OpenCV untuk kla
 ```
 # Function to detect blocks
 # Input = Image frame
-# Output = frame of detected object (camera with bounding box ) and update detected_object global coordinate
+# Output = frame of detected object (camera with bounding box ) and update detected_object
+
+global coordinate
 def detect_blocks(frame, min_size=100, max_size=5000):
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-......
-......
-......
-
+    ......
+    ......
+    detected_coordinates = detected_objects  # Update global coordinate
+    return result_frame
 ```
 
 
