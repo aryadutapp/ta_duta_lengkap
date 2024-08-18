@@ -62,10 +62,17 @@ Setelah menyiapkan dataset kita dapat melakukan finetuning. Untuk metode finetun
 
 * Untuk repo unsloth dapat diakses di 🦥 (https://github.com/unslothai/unsloth)
 
-* Untuk notebook yang digunakan untuk finetuning dapat diakses disini :[Notebook](./train.ipypnb)
+* Untuk notebook yang digunakan untuk finetuning dapat diakses disini : [Notebook](./train.ipypnb)
 
 Pastikan telah mengupload dataset ke Huggingface untuk mempermudah proses finetuning.
 
+Setelah finetuning, jangan lupa untuk menyimpan hasil model. Untuk penelitian ini, paling mudah untuk hanya menyimpan LoRA adapater ke repo Huggingface. Jika ingin menyimpan model penuh (GGUF/llama.cpp) akan memerlukan waktu yang lebih lama dan berpotensi timeout usage (jika menggunaakan colab versi gratis). Seluruh panduan lengkap ada di contoh colab di repo unsloth. 
 
+Menyimpan Adapter LoRA ke Huggingface
+```
+model.push_to_hub_merged("hf/model", tokenizer, save_method = "lora", token = "")
+```
+
+Ketika mengupload adapter LoRA ke HF, maka model akan disimpan dalam bentuk safetensor. Jika ingin menggunakan inferrence unsloth, hanya perlu memanggil adapter di HF (misal "aryaduta/model-finetune") pada parameter model_name.
 
 
