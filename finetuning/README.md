@@ -66,9 +66,6 @@ Setelah menyiapkan dataset kita dapat melakukan finetuning. Untuk metode finetun
 
 Pastikan telah mengupload dataset ke Huggingface untuk mempermudah proses finetuning.
 
-Berikut ini hasil training loss untuk finetuning
-
-
 
 
 
