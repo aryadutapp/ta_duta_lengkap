@@ -1,7 +1,43 @@
 <!-- ABOUT THE PROJECT -->
-# Finetuning
+# Implementasi
 
-Finetuning adalah tindakan untuk menyesuaikan ulang base model LLM agar performanya meningkat untuk dataset domain spesifik tertentu. LLM dilatih dengan dataset pengetahuan umum (wikipedia, buku, dll) sehingga mempunyai pemahaman umum mengenai dunia di sekitarnya. Namun jika kita mempunyai kebutuhan khusus (misal LLM untuk chatbot medis atau untuk mengontrol robot), kita perlu melatih LLM dengan dataset yang lebih spesifik agar dapat menghasilkan output yang kita inginkan)
+Jika anda sudah pada fase ini, diasumsikan telah selesai melakukan finetuning dan model LLM yang baru telah tersedia.
+
+Sebelum melangkah lebih jauh, mari mencoba dulu model yang sudah di finetune.
+
+Berikut notebook sederhana untuk mencoba inferrence (dengan menggunakan LoRA adapter yang telah diupload di Huggingface) [Notebook](./simple-inf.ipypnb)
+
+Setelah memastikan model berhasil dijalankan, jika anda ingin melakukan evaluasi terhadap model (selain training dan eval loss), berikut notebook yang dapat digunakan (asumsi dataset testing sudah diupload di HF dengan format yang sama dengan dataset train) dengan menggunakan metode exact-match [Notebook](./simple-eval.ipypnb)
+
+Setelah model LLM selesai di finetune, kita masih ada beberapa tugas sebelum bisa mengimplementasikannya ke robot nyata.
+
+- [x] Finetuning gemma-2B untuk LLM
+- [ ] Implementasi persepsi robot dengan webcam dan opencv (deteksi objek berdasarkan warna)
+- [ ] Membuat web untuk antarmuka robot dan API inferrence
+- [ ] Kalirasi robot dengan kamera dan lingkungan
+- [ ] Menghubungkan semuanya
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Berikut keperluan alat dan metode:
 * Model LLM yang digunakan adalah [Gemma 2B](https://huggingface.co/google/gemma-2b)
