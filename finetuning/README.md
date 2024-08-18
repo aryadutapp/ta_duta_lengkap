@@ -58,5 +58,17 @@ Untuk dataset lengkap dapat diakses di 🤗 (https://huggingface.co/datasets/Ary
 
 ## Finetuning
 
-Setelah menyiapkan dataset kita dapat melakukan finetuning. Untuk metode finetuning yang digunakan adalah Low Rank Adaptation dengan menggunakan Library Unsloth. Perlu diperhatikan untuk finetuning pastikan mempunyai VRAM yang cukup (pada percobaan di google colab (free gpu), 14 gb vram lebih dari cukup untuk inferrence dan finetuning). Untuk unsloth pada saat penulisan ini hanya tersedia di Linux (Windows bisa dengan WSL). 
+Setelah menyiapkan dataset kita dapat melakukan finetuning. Untuk metode finetuning yang digunakan adalah Low Rank Adaptation dengan menggunakan Library Unsloth. Perlu diperhatikan untuk finetuning pastikan mempunyai VRAM yang cukup (pada percobaan di google colab (free gpu), 14 gb vram lebih dari cukup untuk inferrence dan finetuning). Untuk library unsloth, pada saat penulisan ini hanya tersedia di Linux (Windows bisa dengan WSL). Unsloth menyediakan contoh notebook yang dapat dijalankan di google colab.
+
+* Untuk repo unsloth dapat diakses di 🦥 (https://github.com/unslothai/unsloth)
+
+* Untuk notebook yang digunakan untuk finetuning dapat diakses disini :[Notebook](./train.ipypnb)
+
+Pastikan telah mengupload dataset ke Huggingface untuk mempermudah proses finetuning.
+
+Berikut ini hasil training loss untuk finetuning
+
+
+
+
 
