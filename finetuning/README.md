@@ -75,4 +75,6 @@ model.push_to_hub_merged("hf/model", tokenizer, save_method = "lora", token = ""
 
 Ketika mengupload adapter LoRA ke HF, maka model akan disimpan dalam bentuk safetensor. Jika ingin menggunakan inferrence unsloth, hanya perlu memanggil adapter di HF (misal "aryaduta/model-finetune") pada parameter model_name.
 
+Untuk contoh kode inferrence model yang sudah di finetune akan dibahas di bagian implementasi
+
 
