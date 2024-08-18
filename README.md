@@ -1,7 +1,5 @@
 # INTERAKSI MANUSIA ROBOT BERBASIS LARGE LANGUAGE MODEL UNTUK PEMBANGKITAN ACTION PLAN PADA ROBOT LENGAN.
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Repo ini akan membahas tugas akhir bagaimana kita dapat mengontrol robot lengan (Dobot Magician) dengan Input text bahasa alami yang diolah dengan LLM yang telah di finetune untuk menghasilkan Low Level JSON Action Plan yang akan dieksekusi robot secara real time
 
 Ada dua bagian dari proyek ini:
