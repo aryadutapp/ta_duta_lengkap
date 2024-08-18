@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 # Finetuning
 
-Finetuning adalah tindakan untuk menyesuaikan ulang base model LLM agar performanya meningkat untuk dataset domain spesifik tertentu. LLM dilatih dengan dataset pengetahuan umum (wikipedia, buku, dll) sehingga mempunyai pemahaman umum mengenai dunia di sekitarnya. Namun jika kita mempunyai keperluan khusus (misal LLM untuk chatbot medis atau untuk mengontrol robot), kita perlu melatih LLM dengan dataset yang lebih spesifik agar dapat menghasilkan output yang kita inginkan)
+Finetuning adalah tindakan untuk menyesuaikan ulang base model LLM agar performanya meningkat untuk dataset domain spesifik tertentu. LLM dilatih dengan dataset pengetahuan umum (wikipedia, buku, dll) sehingga mempunyai pemahaman umum mengenai dunia di sekitarnya. Namun jika kita mempunyai kebutuhan khusus (misal LLM untuk chatbot medis atau untuk mengontrol robot), kita perlu melatih LLM dengan dataset yang lebih spesifik agar dapat menghasilkan output yang kita inginkan)
 
 Berikut keperluan alat dan metode:
 * Model LLM yang digunakan adalah [Gemma 2B](https://huggingface.co/google/gemma-2b)
