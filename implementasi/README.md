@@ -12,9 +12,8 @@ Setelah memastikan model berhasil dijalankan, jika anda ingin melakukan evaluasi
 Setelah model LLM selesai di finetune, kita masih ada beberapa tugas sebelum bisa mengimplementasikannya ke robot nyata.
 
 - [x] Finetuning gemma-2B untuk LLM
-- [ ] Implementasi persepsi robot dengan webcam dan opencv (deteksi objek berdasarkan warna)
+- [ ] Implementasi persepsi robot dengan webcam dan opencv (deteksi objek berdasarkan warna) dan kalibrasi koordinat kamera ke robot
 - [ ] Membuat web untuk antarmuka robot
-- [ ] Kalirasi robot dengan kamera dan lingkungan
 - [ ] Membuat API Inferrence LLM
 - [ ] Menghubungkan semuanya
 
@@ -42,6 +41,12 @@ def detect_blocks(frame, min_size=100, max_size=5000):
     detected_coordinates = detected_objects  # Update global coordinate
     return result_frame
 ```
+
+Selanjutnya setelah mendapatkan koordinat (misalkan balok merah: (100,200), perlu diingat bahwa koordinat yang didapat adalah koordinat terhadap frame kamera. Sedangkan kita ingin koordinat balok merah terhadap robot. Untuk hal ini saya menggunakan metode interpolasi linear dimana saya menentukan batas titik pojok kiri atas dan pojok kiri
+
+INSERT IMAGE HERE
+
+
 
 ## Membuat web untuk antarmuka robot
 
