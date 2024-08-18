@@ -15,7 +15,7 @@ Sebelumnya kita harus menyiapkan dataset. Untuk format dataset saya menggunakan 
 ```
 "instruction":
 
-"Objektif: Tugas anda adalah menghasilkan urutan respons JSON untuk merencanakan tindakan lengan robot berdasarkan input pengguna. Jika tujuan tidak dapat dicapai dengan menggunakan instruksi yang disediakan dan objek yang tersedia, kembalikan pesan kesalahan.
+"Objektif: Tugas anda adalah menghasilkan urutan respons JSON untuk merencanakan tindakan robot lengan berdasarkan input pengguna. Jika tujuan tidak dapat dicapai dengan menggunakan instruksi yang disediakan dan objek yang tersedia, kembalikan pesan kesalahan.
 
 Berikan objek JSON yang mengandung array "actions", diidentifikasi dengan key "actions".
 
