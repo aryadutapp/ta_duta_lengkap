@@ -62,7 +62,7 @@ Setelah menyiapkan dataset kita dapat melakukan finetuning. Untuk metode finetun
 
 * Untuk repo unsloth dapat diakses di 🦥 (https://github.com/unslothai/unsloth)
 
-* Untuk notebook yang digunakan untuk finetuning dapat diakses disini : [Notebook](./train.ipypnb)
+* Untuk notebook yang digunakan untuk finetuning dapat diakses disini : [Notebook](./train.ipynb)
 
 Pastikan telah mengupload dataset ke Huggingface untuk mempermudah proses finetuning.
 
