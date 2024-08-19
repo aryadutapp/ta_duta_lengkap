@@ -30,7 +30,7 @@ Semua kode ini nantinya akan di app.py di fungsi detect_blocks():
 
 Dalam kode ini hanya mendeteksi tepat satu balok biru, jingga, dan kuning.
 
-Untuk deteksi objek dilakukan dengan webcam dan diproses dengan OpenCV untuk klasifikasi berdasarkan warna. Jika ingin menggunakan metode lain, dapat dilakukan. 
+Untuk deteksi objek dilakukan dengan webcam dan diproses dengan OpenCV untuk klasifikasi berdasarkan warna. Jika ingin menggunakan metode lain, dapat dilakukan. Untuk kamera saya menggunakan ipcam droidcam, jika ingin menggunakan kamera lain, jangan lupa ganti sourcenya.
 
 ```
 # Function to detect blocks
@@ -173,16 +173,20 @@ Jika robot tidak merespon atau terdapat pesan error di CLI, coba untuk homing ma
 
 Jika tes_koneksi.py sudah berjalan dengan lancar, selanjutnya hubungkan kamera dan robot dengan komputer LPC dengan konfigurasi berikut.
 
-INSERT IMAGE HERE
+![Setup Atas](./images/setup-atas.jpeg)
+
+![Setup Bawah](./images/setup-bawah.jpeg)
 
 Setelah itu coba jalankan app.py dan inferrence.ipypnb. Pada website yang dihost app.py coba akses endpoint / atau index.html. Seharusnya menghasilkan tampilan berikut:
 
-INSERT IMAGE HERE
+![Contoh Tampilan Website](./images/contoh-web.png)
 
 Untuk menggunakan website
 1. Masukkan input perintah bahasa alami ke kolom teks "misalkan geser balok kuning kedepan".
 2. Klik jalankan inferrece dan tunggu sampai rencana aksi dalam bentuk JSON muncul.
 3. Jika hasil inferrence dalam bentuk JSON muncul dan tidak terdapat error, klik jalankan robot (pastikan untuk tetap mengawasi kondisi robot).
+
+Note : jika koordinat mulai melenceng / tidak akurat, coba lakukan homing dengan kode tes_koneksi.py
 
 
 
