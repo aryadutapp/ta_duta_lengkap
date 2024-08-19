@@ -17,6 +17,9 @@ Setelah model LLM selesai di finetune, kita masih ada beberapa tugas sebelum bis
 
 Note: Untuk kode inferrence LLM dan menjalankan robot dijalankan di dua komputer terpisah. Sederhananya Low Performance Computer (LPC) akan terhubung ke robot dan kamera dan juga hosting halaman web sederhana sebagai antarmuka kontrol untuk memasukkan text. Sedaangkan High Performance Computer (HPC) akan digunakan untuk inferrence LLM dan hosting API Inferrence agar LPC dapat membuat HTTP request inferrence ke HPC. Dalam implementasi nyata hanya terdapat dua file kode yang dijalankan (inferrence.ipypnb dan app.py). Jika ingin dijalankan dalam satu komputer (1 HPC), bisa langsung menjalankan dua kode dalam satu komputer. 
 
+![Diagram Sistem](./images/hpc-lpc.jpg)
+
+
 Untuk penjelasan selanjutnya asumsikan saya hanya membahas untuk kode app.py kecuali saat membahas pembuatan endpoint untuk inferrence
 
 ## Implementasi persepsi robot dengan webcam dan opencv (deteksi objek berdasarkan warna)
