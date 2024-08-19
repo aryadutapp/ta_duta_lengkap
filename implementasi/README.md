@@ -139,7 +139,7 @@ Untuk setup di penelitian ini dibagi menjadi 2, yaitu setup inferrence LLM dan s
 
 Jalankan inferrence.ipypnb di HPC dan pastikan endpoint /api dapat diakses dengan membuat request (gunakan aplikasi seperti POSTMAN) untuk mengecek apakah api dapat mengembalikan hasil inferrence.
 
-### Setup inferennce
+### Setup robot
 
 Selnajutnya di LPC terdapat beberapa step
 
@@ -154,6 +154,31 @@ import requests
 import pydobot
 import json
 ```
+
+Library utama yang digunakan untuk mengontrol robot adalah [pydobot](https://github.com/luismesas/pydobot). Baca reponya terlebih dahulu untuk mengetahui dokumentasinya.
+
+Setelah menginstal seluruh library, buka folder libary dimana pydobot diinstal. Selanjutnya ganti isi dobot.py dengan file [dobot.py](./dobot.py) di repo ini.
+
+Sekarang coba untuk jalankan fungsi tes_koneksi.py untuk melihat apakah library robot terinstal dengan benar. Jika terdapat error pastikan port (misal COM8) sudah benar, robot sudah menyala dan terhubung via USB, dan coba untuk run kode setelah robot berbunyi beep (karena robot akan inisiasi pada awal dihidupkan). 
+
+Jika robot tidak merespon atau terdapat pesan error di CLI, coba untuk homing manual dengan menggunakan dobotlab. Selanjutnya disconnect dobot dari dobotlab (JANGAN MATIKAN / CABUT USB ROBOT !!!) dan coba kembali jalankan kode.
+
+Jika tes_koneksi.py sudah berjalan dengan lancar, selanjutnya hubungkan kamera dan robot dengan komputer LPC dengan konfigurasi berikut.
+
+INSERT IMAGE HERE
+
+Setelah itu coba jalankan app.py dan inferrence.ipypnb. Pada website yang dihost app.py coba akses endpoint / atau index.html. Seharusnya menghasilkan tampilan berikut:
+
+INSERT IMAGE HERE
+
+Untuk menggunakan website
+1. Masukkan input perintah bahasa alami ke kolom teks "misalkan geser balok kuning kedepan".
+2. Klik jalankan inferrece dan tunggu sampai rencana aksi dalam bentuk JSON muncul.
+3. Jika hasil inferrence dalam bentuk JSON muncul dan tidak terdapat error, klik jalankan robot (pastikan untuk tetap mengawasi kondisi robot).
+
+
+
+
 
 
 
