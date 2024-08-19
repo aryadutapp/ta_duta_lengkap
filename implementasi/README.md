@@ -7,7 +7,7 @@ Sebelum melangkah lebih jauh, mari mencoba dulu model yang sudah di finetune.
 
 Berikut notebook sederhana untuk mencoba inferrence (dengan menggunakan LoRA adapter yang telah diupload di Huggingface) [Notebook](./simple-inf.ipypnb)
 
-Setelah memastikan model berhasil dijalankan, jika anda ingin melakukan evaluasi terhadap model (selain training dan eval loss), berikut notebook yang dapat digunakan (asumsi dataset testing sudah diupload di HF dengan format yang sama dengan dataset train) dengan menggunakan metode exact-match [Notebook](./simple-eval.ipypnb)
+Setelah memastikan model berhasil dijalankan, jika anda ingin melakukan evaluasi terhadap model (selain training dan eval loss), berikut notebook yang dapat digunakan (asumsi dataset testing sudah diupload di HF dengan format yang sama dengan dataset train) dengan menggunakan metode exact-match [Notebook](./simple-eval.ipynb)
 
 Setelah model LLM selesai di finetune, kita masih ada beberapa tugas sebelum bisa mengimplementasikannya ke robot nyata.
 
