@@ -51,6 +51,8 @@ Selanjutnya setelah mendapatkan koordinat (misalkan balok merah: (100,200), perl
 
 ![Koordinat Kamera vs Robot](./images/kamvsreal.jpg)
 
+![Cara Kalibraso](./images/cara_kal.jpg)
+
 
 ## Membuat web untuk antarmuka robot
 
