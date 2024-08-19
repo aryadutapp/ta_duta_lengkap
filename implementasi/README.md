@@ -17,7 +17,7 @@ Setelah model LLM selesai di finetune, kita masih ada beberapa tugas sebelum bis
 - [ ] Membuat API Inferrence LLM
 - [ ] Menghubungkan semuanya
 
-Note: Untuk kode inferrence LLM dan menjalankan robot dijalankan di dua komputer terpisah. Hal ini dikarenakan untuk inferrence LLM. Sederhananya Low Performance Computer (LPC) akan terhubung ke robot dan kamera dan juga hosting halaman web sederhana sebagai antarmuka kontrol untuk memasukkan text. Sedaangkan High Performance Computer (HPC) akan digunakan untuk inferrence LLM dan hosting API Inferrence agar LPC dapat membuat request inferrence ke HPC. Dalam implementasi nyata hanya terdapat dua file kode yang dijalankan (inferrence.ipypb dan app.py). Jika ingin dijalankan dalam satu komputer (1 HPC), bisa langsung menjalankan dua kode dalam satu komputer. 
+Note: Untuk kode inferrence LLM dan menjalankan robot dijalankan di dua komputer terpisah. Sederhananya Low Performance Computer (LPC) akan terhubung ke robot dan kamera dan juga hosting halaman web sederhana sebagai antarmuka kontrol untuk memasukkan text. Sedaangkan High Performance Computer (HPC) akan digunakan untuk inferrence LLM dan hosting API Inferrence agar LPC dapat membuat HTTP request inferrence ke HPC. Dalam implementasi nyata hanya terdapat dua file kode yang dijalankan (inferrence.ipypnb dan app.py). Jika ingin dijalankan dalam satu komputer (1 HPC), bisa langsung menjalankan dua kode dalam satu komputer. 
 
 Untuk penjelasan selanjutnya asumsikan saya hanya membahas untuk kode app.py kecuali saat membahas pembuatan endpoint untuk inferrence
 
@@ -45,8 +45,6 @@ def detect_blocks(frame, min_size=100, max_size=5000):
 Selanjutnya setelah mendapatkan koordinat (misalkan balok merah: (100,200), perlu diingat bahwa koordinat yang didapat adalah koordinat terhadap frame kamera. Sedangkan kita ingin koordinat balok merah terhadap robot. Untuk hal ini saya menggunakan metode interpolasi linear dimana saya menentukan batas titik pojok kiri atas dan pojok kiri
 
 INSERT IMAGE HERE
-
-
 
 ## Membuat web untuk antarmuka robot
 
@@ -87,6 +85,82 @@ if __name__ == '__main__':
 Berikut contoh tampilan website
 
 INSERT IMAGE HERE
+
+Note: Untuk membuat frame deteksi objek terlihat pada web, pastikan endpoint /video_feed dapat diakses (atur ulang seluruh variabel untuk fungsi terkait generate_frame() dan pastikan kamera terhubung dengan komputer yang akan menjalankan web server app.py)
+
+Untuk cara penggunaan website akan dibahas di akhir.
+
+## Membuat API Inferrence LLM
+
+Untuk bagian ini nantinya akan di inferrence.ipypnb
+
+Untuk API Inferrence LLM dibuat dengan flask. Pada penelitian ini menggunakan reverse proxy NGROK agak API dapat diakses melalu internet. Jika ingin menggunakan jaringan lokal / intranet, skip NGROK dan ganti link request inferrence pada app.py menjadi IP komputer yang digunakan untuk inferrence.
+
+```
+# Open a ngrok tunnel to the HTTP server
+public_url = ngrok.connect(5000).public_url
+print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}/\"".format(public_url, 5000))
+
+# Update any base URLs to use the public ngrok URL
+app.config["BASE_URL"] = public_url
+
+# Define Flask routes
+@app.route("/")
+def index():
+    return "Hello from Inferrence Computer"
+
+@app.route('/api')
+def api():
+    data = request.json
+    input_context = data.get('input_context', None)
+    object_context = data.get('object_context', None)
+    
+    if input_context and object_context:
+        output_data = inferrence(input_context, object_context)
+        return jsonify(output_data)
+    elif input_context is Nonee:
+        return jsonify({"status": "failure", "message": "input_context are missing"}), 400
+    else:
+        return jsonify({"status": "failure", "message": "internal error"}), 400
+
+# Start the Flask server in a new thread
+threading.Thread(target=app.run, kwargs={"use_reloader": False}).start()
+```
+
+Note: Untuk fungsi inferrence(input_context, object_context) mengambil input perintah (input_context) dan hasil persepsi deteksi objek (object_context) dan dijalankan selnya sebelum flask. Untuk mencoba gunakan aplikasi seperti POSTMAN untuk membuat request ke API dan pastikan dapat mengembalikan rencana aksi JSON yang sesuai.
+
+INSERT IMAGE HERE
+
+## Menghubungkan semuanya
+
+Untuk setup di penelitian ini dibagi menjadi 2, yaitu setup inferrence LLM dan setup robot.
+
+### Setup inferennce
+
+Jalankan inferrence.ipypnb di HPC dan pastikan endpoint /api dapat diakses dengan membuat request (gunakan aplikasi seperti POSTMAN) untuk mengecek apakah api dapat mengembalikan hasil inferrence.
+
+### Setup inferennce
+
+Selnajutnya di LPC terdapat beberapa step
+
+1. Coba install [dobotlab](https://www.dobot-robots.com/service/download-center). Dobotlab meruapakan GUI untuk mengontrol Dobot Magician. Aplikasi ini diperlukan untuk mengecek port mana DOBOT terhubung (misal 'COM3') dan berguna kedepannya untuk mengeksplor fungsionalitas robot ini.
+2. Selanjutnya install library berikut ini library yang digunakan (disarankan menggunakan venv/conda agar tidak menggangu library lain)
+
+```
+from flask import Flask, Response, render_template, jsonify, request
+import cv2
+import numpy as np
+import requests
+import pydobot
+import json
+```
+
+
+
+
+
+
+
 
 
 
