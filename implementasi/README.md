@@ -45,9 +45,12 @@ def detect_blocks(frame, min_size=100, max_size=5000):
     return result_frame
 ```
 
-Selanjutnya setelah mendapatkan koordinat (misalkan balok merah: (100,200), perlu diingat bahwa koordinat yang didapat adalah koordinat terhadap frame kamera. Sedangkan kita ingin koordinat balok merah terhadap robot. Untuk hal ini saya menggunakan metode interpolasi linear dimana saya menentukan batas titik pojok kiri atas dan pojok kanan bawah
+Selanjutnya setelah mendapatkan koordinat (misalkan balok merah: (100,200), perlu diingat bahwa koordinat yang didapat adalah koordinat terhadap frame kamera. Sedangkan kita ingin koordinat balok merah terhadap robot. Untuk hal ini saya menggunakan metode interpolasi linear dimana saya menentukan batas titik pojok kiri atas dan pojok kanan bawah dengan fungsi maps_to_real(). Pastikan untuk mengganti koordinat maps_coordinate dengan koordinat kamera baru yang tercatat
+
+![Map to Real](./images/maptoreal.jpg)
 
 ![Koordinat Kamera vs Robot](./images/kamvsreal.jpg)
+
 
 ## Membuat web untuk antarmuka robot
 
