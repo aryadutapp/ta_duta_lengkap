@@ -5,7 +5,7 @@ Jika anda sudah pada fase ini, diasumsikan telah selesai melakukan finetuning da
 
 Sebelum melangkah lebih jauh, mari mencoba dulu model yang sudah di finetune.
 
-Berikut notebook sederhana untuk mencoba inferrence (dengan menggunakan LoRA adapter yang telah diupload di Huggingface) [Notebook](./simple-inf.ipypnb)
+Berikut notebook sederhana untuk mencoba inferrence (dengan menggunakan LoRA adapter yang telah diupload di Huggingface) [Notebook](./simple-inf.ipynb)
 
 Setelah model LLM selesai di finetune, kita masih ada beberapa tugas sebelum bisa mengimplementasikannya ke robot nyata.
 
