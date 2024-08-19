@@ -24,6 +24,8 @@ Untuk penjelasan selanjutnya asumsikan saya hanya membahas untuk kode app.py kec
 
 ## Implementasi persepsi robot dengan webcam dan opencv (deteksi objek berdasarkan warna)
 
+![Deteksi Objek](./images/opencv.jpg)
+
 Semua kode ini nantinya akan di app.py di fungsi detect_blocks():
 
 Dalam kode ini hanya mendeteksi tepat satu balok biru, jingga, dan kuning.
