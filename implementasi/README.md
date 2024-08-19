@@ -137,7 +137,7 @@ threading.Thread(target=app.run, kwargs={"use_reloader": False}).start()
 
 Note: Untuk fungsi inferrence(input_context, object_context) mengambil input perintah (input_context) dan hasil persepsi deteksi objek (object_context) dan dijalankan selnya sebelum flask. Untuk mencoba gunakan aplikasi seperti POSTMAN untuk membuat request ke API dan pastikan dapat mengembalikan rencana aksi JSON yang sesuai.
 
-INSERT IMAGE HERE
+![Contoh Inferrence](./images/postman.jpg)
 
 ## Menghubungkan semuanya
 
