@@ -139,6 +139,8 @@ Untuk setup di penelitian ini dibagi menjadi 2, yaitu setup inferrence LLM dan s
 
 Jalankan inferrence.ipypnb di HPC dan pastikan endpoint /api dapat diakses dengan membuat request (gunakan aplikasi seperti POSTMAN) untuk mengecek apakah api dapat mengembalikan hasil inferrence.
 
+INSERT IMAGE HERE
+
 ### Setup robot
 
 Selnajutnya di LPC terdapat beberapa step
