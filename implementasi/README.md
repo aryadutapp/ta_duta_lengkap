@@ -51,7 +51,7 @@ Selanjutnya setelah mendapatkan koordinat (misalkan balok merah: (100,200), perl
 
 ![Koordinat Kamera vs Robot](./images/kamvsreal.jpg)
 
-![Cara Kalibraso](./images/cara_kal.jpg)
+![Cara Kalibrasi](./images/cara_kal.jpg)
 
 
 ## Membuat web untuk antarmuka robot
@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
 Berikut contoh tampilan website
 
-INSERT IMAGE HERE
+![Tampilan Web](./images/tampwe.jpg)
 
 Note: Untuk membuat frame deteksi objek terlihat pada web, pastikan endpoint /video_feed dapat diakses (atur ulang seluruh variabel untuk fungsi terkait generate_frame() dan pastikan kamera terhubung dengan komputer yang akan menjalankan web server app.py)
 
