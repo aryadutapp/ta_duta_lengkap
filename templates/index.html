@@ -26,13 +26,13 @@
             <div class="mt-14 xl:px-28 mb-4 w-full lg:px-14">
                 <h2 class="text-4xl font-medium mb-6">Masukkan Perintah Kontrol Robot</h2>
                 <input type="text" id="control-command" placeholder="Misalkan : pindahkan balok merah ke depan" class="w-full px-4 py-4 border border-2 rounded-md mb-4 text-xl">
-                <button id="speech-to-text" class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-4 rounded-md w-full text-xl font-bold mt-4">Gunakan Perintah Suara</button>
-                <button class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-4 rounded-md w-full text-xl font-bold mt-4" onclick="sendPrompt()">Jalankan Inferrence</button>
+                <button id="speech-to-text-button" class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-4 rounded-md w-full text-xl font-bold mt-4" onclick="startSpeechRecognition()">Gunakan Suara</button>
+                <button class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-4 rounded-md w-full text-xl font-bold mt-4" onclick="sendPrompt()">Jalankan Inference</button>
             </div>
     
             <div class="mt-14 xl:px-28 mb-4 w-full lg:px-14 mb-36">
                 <h2 class="text-4xl font-medium mb-6">Hasil Inference</h2>
-                <div class="bg-gray-200 p-4 rounded-md mb-4 text-xl json-receive" id="inference-result">Hasil inferrece akan ditampilkan disini</div>
+                <div class="bg-gray-200 p-4 rounded-md mb-4 text-xl json-receive" id="inference-result">Hasil inference akan ditampilkan di sini</div>
                 <button class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-4 rounded-md w-full text-xl font-bold mt-4 robot-run" onclick="runRobot()">Jalankan robot</button>
                 <div id="robot-result" class="text-xl mt-4"></div>
             </div>
@@ -64,6 +64,7 @@
                 const objects = listItems.map(li => li.textContent.trim());
                 const detectedObjects = objects.join(', ');
                 const command = document.getElementById('control-command').value;
+    
                 const data = {
                     object_context: detectedObjects,
                     input_context: command
@@ -87,6 +88,7 @@
     
                     const result = await response.json();
                     resultElement.textContent = JSON.stringify(result, null, 2);
+    
                 } catch (error) {
                     console.error('Error sending prompt:', error);
                 }
@@ -95,6 +97,7 @@
             async function runRobot() {
                 try {
                     const inferenceResult = JSON.parse(document.getElementById('inference-result').textContent);
+    
                     const resultElement = document.getElementById('robot-result');
                     resultElement.textContent = 'loading...';
     
@@ -112,14 +115,21 @@
     
                     const result = await response.json();
                     resultElement.textContent = JSON.stringify(result, null, 2);
+    
                 } catch (error) {
                     console.error('Error running robot:', error);
                 }
             }
     
-            function initializeSpeechRecognition() {
+            function startSpeechRecognition() {
+                const button = document.getElementById('speech-to-text-button');
+                button.textContent = 'Mendengarkan...';
+                button.classList.add('listening');
+    
                 if (!('webkitSpeechRecognition' in window)) {
-                    alert('Webkit Speech Recognition tidak didukung di browser Anda. Cobalah menggunakan Chrome.');
+                    alert('Webkit Speech Recognition tidak didukung oleh browser ini.');
+                    button.textContent = 'Gunakan Suara';
+                    button.classList.remove('listening');
                     return;
                 }
     
@@ -128,25 +138,28 @@
                 recognition.interimResults = false;
                 recognition.maxAlternatives = 1;
     
-                recognition.onresult = function(event) {
-                    const command = event.results[0][0].transcript;
-                    document.getElementById('control-command').value = command;
+                recognition.onresult = function (event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('control-command').value = transcript;
+                    button.textContent = 'Gunakan Suara';
+                    button.classList.remove('listening');
                 };
     
-                recognition.onerror = function(event) {
-                    console.error('Speech recognition error:', event.error);
+                recognition.onerror = function (event) {
+                    console.error('Speech Recognition Error:', event.error);
+                    alert('Terjadi kesalahan saat mendengarkan: ' + event.error);
+                    button.textContent = 'Gunakan Suara';
+                    button.classList.remove('listening');
                 };
     
-                recognition.onend = function() {
-                    console.log('Speech recognition ended');
+                recognition.onend = function () {
+                    button.textContent = 'Gunakan Suara';
+                    button.classList.remove('listening');
                 };
     
-                document.getElementById('speech-to-text').addEventListener('click', function() {
-                    recognition.start();
-                });
+                recognition.start();
             }
     
-            initializeSpeechRecognition();
             setInterval(fetchDetectedObjects, 1000);
         </script>
     </body>
